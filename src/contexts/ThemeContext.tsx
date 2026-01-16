@@ -18,4 +18,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("Error");
+  }
+  return context;
+};
